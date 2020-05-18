@@ -15,9 +15,9 @@ void bubbleSort(char** text) {
     bool exit = false;
     while (!exit) {
         exit = true;
-        for (int i = 1; i < 4; i++)
-            if (getSize(text[i]) < getSize(text[i + 1])) {
-                swap(text[i], text[i + 1]);
+        for (int i = 0; i < 3; i++)
+            if (getSize(text[i]) > getSize(text[i + 1])) {
+                swap(text[i], text[i+1]);
                 exit = false;
             }
     }
@@ -25,18 +25,19 @@ void bubbleSort(char** text) {
 
 
 int main() {
+    setlocale(LC_ALL, "Russian");
     int maxSize = 40;
     char** text = new char* [3];
-    cout << "Please, enter the text: " << endl;
-    for (int i = 1; i <= 4; i++) {
+    cout << "Введите текст: " << endl;
+    for (int i = 0; i <= 3; i++) {
         text[i] = new char[maxSize];
-       gets(text[i]);
+       cin.getline(text[i],100);
     }
-    cout << "Text: " << endl;
+    cout << "Текст: " << endl;
     for (int i = 0; i <= 3; i++) cout << text[i] << endl;
     cout << endl;
     bubbleSort(text);
-    cout << "Sorted text: " << endl;
+    cout << "Сортированный текст: " << endl;
     for (int i = 0; i <= 3; i++) cout << text[i] << endl;
     return 0;
 }
