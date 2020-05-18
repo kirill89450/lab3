@@ -1,43 +1,35 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <string>
 
 using namespace std;
-
-string get_word(istream& is) {
-    string w;
-    is >> w;
-    return w;
-}
-
-int main()
-{
-    setlocale(LC_ALL, "Russian");
-
-    ifstream file("text.txt");
-    if (!file) {
-        cerr << "Не удалось открыть файл" << endl;
-        return 1;
-    }
-
-    string word, max_word;
-    size_t len, max_len = 0;
-
-    while (file) {
-        word = get_word(file);
-        if (word.length() == 0)
-            break;
-        len = word.length();
-        if (len > max_len) {
-            max_len = len;
-            max_word = word;
+int getSize(char* string);
+int main(){
+    char text[] = "\n Do you like programming? \n I love programming! \n But sometimes i lose my head from love \n";
+    int len = getSize(text);
+    cout << "текст: " << text << endl;
+    int pos = 0, wrdlen = 0, wrdlenMax = 0;
+    for (int i = 0; i < len; i++) {
+        if ((text[i] != ' ') and (text[i] > 64) and (text[i] < 123)) wrdlen++;
+        if ((text[i] == ' ') or (len - i == 1)) {
+            if (wrdlen > wrdlenMax) {
+                i--;
+                pos = i - wrdlen;
+                wrdlenMax = wrdlen;
+            }
+            wrdlen = 0;
         }
-        
     }
-
-    file.close();
-
-    cout << "Самое длинное слово:  \"" << max_word << "\"" << endl;
-
+    cout << "Самое большое слово: ";
+    for (int i = 0; i < wrdlenMax; i++)
+        cout << text[i + pos];
     return 0;
+}
+int getSize(char* string)
+{
+    int size = 0;
+    int i = 0;
+    while (string[i] != '\0') {
+        size++;
+        i++;
+    }
+    return size;
 }
