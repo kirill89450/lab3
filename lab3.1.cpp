@@ -18,4 +18,5 @@ int main()
     for (int k = 0; k < 12; k++) cout << s3[k];
     return 0;
 }
+asd
 
