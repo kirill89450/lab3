@@ -24,9 +24,9 @@ int main()
     setlocale(LC_ALL, "Russian");
     char s1[100], s2[100];
     cout << "Введите 1 строку: " << endl;
-    cin >> s1;
+    cin.getline(s1, 100);
     cout << "Введите 2 строку: " << endl;
-    cin >> s2;
+    cin.getline(s2, 100);
     cout << "Строки: " << endl << s1 << endl << s2 << endl;
     int newSize = getSize(s1) + getSize(s2);
     char* s = concatination(s1, s2, getSize(s1), getSize(s2));
